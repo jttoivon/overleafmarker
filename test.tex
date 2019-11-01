@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+
+\usepackage[showboxes,absolute]{textpos}
+\usepackage{calc}
+\usepackage{color}
+\usepackage{pgf}
+\newcommand*{\getlength}[2]{%
+   %\pgfmathsetmacro#1{#2}%  Result in `pt`
+   % Or:
+   \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
+ }
+ 
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+
+\newlength{\mylen}
+\setlength{\mylen}{\paperheight/3}
+%\divide\mylen by 3
+%\def \dvheight{138.6pt}
+\def \dvheight{\mylen}
+\def \dvwidth{12.230808mm}   % equals 34.8pt
+\getlength{\dvwidthinmm}{\dvwidth} % get the width in millimeters, because textblock
+                                   % want numbers, not lengths
+
+\newcommand{\Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\newcommand*{\myshownumber}[1]{
+\getlength{\dvyposinmm}{\dvheight*(#1-1)} % get the height in millimeters, because textblock
+% wants numbers, not lengths
+
+\begin{textblock}{\dvwidthinmm}(0,\dvyposinmm)
+  \noindent\colorbox{red}{\parbox[c][\dvheight][t]{\dvwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#1}}}}
+\end{textblock}
+}
+
+\begin{document}
+
+\section{Otsake}
+The canonical CTAN URL for Textpos is.
+Textpos has a home page at. The
+source is held at bitbucket: and there
+is an issues list there, for bug reports. Code contributions or fixes are welcome,
+but note that I feel that Textpos is pretty mature now, and I’m reluctant to extend
+its functionality beyond its natural boundaries, so it would be wise to chat to me
+about any new features before spending a lot of time drafting them in code.
+
+\myshownumber{1}
+\myshownumber{2}
+\myshownumber{3}
+
+\end{document}
