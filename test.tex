@@ -1,37 +1,49 @@
 \documentclass[a4paper]{article}
 
-\usepackage[showboxes,absolute]{textpos}
+\usepackage[showframe]{geometry}
+%\usepackage[showframe,top=1.2in, bottom=1.5in, left=1in, right=1.6cm]{geometry}
+
+\usepackage[absolute]{textpos}
 \usepackage{calc}
 \usepackage{color}
 \usepackage{pgf}
-\newcommand*{\getlength}[2]{%
+
+\newcommand*{\getlength}[2]{% Converts to millimeters and removes the unit
    %\pgfmathsetmacro#1{#2}%  Result in `pt`
    % Or:
    \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
- }
- 
+}
+
+% Define a grid where unit length is 1 millimeter.
+% The 'textpos' package, which is used to place material, uses these coordinates
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
 
-\newlength{\mylen}
-\setlength{\mylen}{\paperheight/3}
-%\divide\mylen by 3
-%\def \dvheight{138.6pt}
-\def \dvheight{\mylen}
-\def \dvwidth{12.230808mm}   % equals 34.8pt
-\getlength{\dvwidthinmm}{\dvwidth} % get the width in millimeters, because textblock
-                                   % want numbers, not lengths
+\newcommand{\olmnumberofpapers}{3}
+\newlength{\olmheight}
+\newlength{\olmwidth}
+\newlength{\olmxpos}
+\setlength{\olmheight}{\paperheight/\olmnumberofpapers}
 
 \newcommand{\Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 
-\newcommand*{\myshownumber}[1]{
-\getlength{\dvyposinmm}{\dvheight*(#1-1)} % get the height in millimeters, because textblock
-% wants numbers, not lengths
 
-\begin{textblock}{\dvwidthinmm}(0,\dvyposinmm)
-  \noindent\colorbox{red}{\parbox[c][\dvheight][t]{\dvwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#1}}}}
-\end{textblock}
+\newcommand*{\olmshownumber}[2][\paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep)]{
+  \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
+  \setlength{\olmwidth}{#1}
+  \setlength{\olmxpos}{\paperwidth-\olmwidth}
+  % get the width, xpos, and ypos in millimeters and remove the unit
+  \getlength{\olmwidthmm}{\olmwidth}
+  \getlength{\olmxposmm}{\olmxpos}
+  \getlength{\olmyposmm}{\olmheight*(#2-1)} 
+  \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
+    \noindent\colorbox{green}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
+  \end{textblock}
 }
+
+\makeatletter
+\def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+\makeatother
 
 \begin{document}
 
@@ -43,9 +55,17 @@ is an issues list there, for bug reports. Code contributions or fixes are welcom
 but note that I feel that Textpos is pretty mature now, and I’m reluctant to extend
 its functionality beyond its natural boundaries, so it would be wise to chat to me
 about any new features before spending a lot of time drafting them in code.
+\fbox{joitain sanoja}
 
-\myshownumber{1}
-\myshownumber{2}
-\myshownumber{3}
+Margin paragraph width is \convertto{mm}{\marginparwidth}
 
+\olmshownumber[10mm]{1}
+%\myshownumber{2}
+\olmshownumber{2}
+
+
+\convertto{mm}{\olmheight}
+\newpage
+Tekstia.
+\olmshownumber{3}
 \end{document}
