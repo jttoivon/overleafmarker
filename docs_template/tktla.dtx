@@ -1,0 +1,1004 @@
+%\iffalse     -*- latex -*-
+% tktla.dtx - LaTeX2e document class for series A reports in the
+%             University of Helsinki Department of Computer Science
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{url}
+\CodelineNumbered\DisableCrossrefs
+\begin{document}
+\DocInput{tktla.dtx}
+\end{document}
+%</driver>
+%\fi
+%
+%% \CheckSum{513}
+%
+% \MakeShortVerb{\|}
+%
+% \title{The \texttt{tktla} document class \\ for series A reports in
+%   the University of Helsinki Department of Computer
+%   Science}
+% \author{Riku Saikkonen}
+% \date{Version v1.1 2009/02/17 Greger Lindén}
+% \date{Version v1.2 2011/02/11 Greger Lindén}
+% \date{Version v1.3 2011/02/23 Greger Lindén}
+% \date{Version v1.4 2012/08/14 Pirjo Moen}
+% \date{Version v1.5 2013/08/16 Pirjo Moen}
+% \date{Version v1.6 2014/06/25 Pirjo Moen}
+% \date{Version v1.7 2014/11/13 Pirjo Moen}
+% \date{Version v1.8 2018/04/27 Pirjo Moen}
+
+% \maketitle
+%
+% \begin{abstract}
+%   This document describes the use and implementation of the |tktla|
+%   document class, meant for producing reports in report series~A in
+%   the University of Helsinki Department of Computer Science (e.g.,
+%   PhD theses). The document also contains some general tips for using
+%   \LaTeX{} for long scientific documents such as PhD theses.
+%   However, the reader should be familiar with the basics of \LaTeX{}
+%   before reading this document.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+% The |tktla| document class defined by this \LaTeX{} package is based
+% on the standard \LaTeX{} |book| document class, but makes some
+% changes to the paper size and layout and loads a few useful
+% packages not used by the standard |book| document class.
+%
+% Thus, the |tktla| document class is used and customised like the
+% standard |book| document class, with a couple of exceptions that are
+% documented below.
+%
+% \section{Class options}
+%
+% The |tktla| document class has a couple of options, set via the
+% |\documentclass| command. All the options of the |book| class are not
+% directly available, since some of them do not make sense with the
+% layout specified in this document class (for example, the paper size
+% cannot be changed).
+%
+% The layout defined by this class uses the B5 paper size. Since this
+% is difficult to print using standard printers, the |a4frame|,
+% |a4cross| and |a4cam| options can be used to print the B5-sized
+% pages on A4 paper. The three options differ in the way the smaller
+% page is framed: the |a4frame| option draws a box (frame) around the
+% B5 page, while the |a4cross| and |a4cam| options draw different
+% types of crop marks in the corners. If you specify neither
+% option, B5-sized pages will be produced.
+%
+% In this version of the package, there is only one layout defined
+% called |officiallayout|. Please use this layout.
+%
+% In addition to the options described above, the standard |book|
+% document class options |draft|, |final|, |leqno|, |fleqn| and
+% |openbib| are also supported. (The other |book| options do not make
+% sense when using a prespecified layout.)
+%
+% \section{Document structure}
+%
+% A typical document that uses the |tktla| document class should set
+% some bibliographic information in its preamble (before
+% |\begin{document}|) -- this is described in detail below. In
+% addition, the beginning of the document (just after
+% |\begin{document}|) should be structured as follows:
+% \begin{itemize}
+% \item first, just after |\begin{document}|, |\frontmatter| should be
+%   called to adjust the page numbering
+% \item next, |\maketitle| should be used to produce the title and
+%   copyright pages
+% \item after this, an abstract should be written between
+%   |\begin{abstract}| and |\end{abstract}| -- this will produce the
+%   abstract page
+% \item optionally, an acknowledgements page can be produced here
+%   using the |acknowledgements| environment (see below)
+% \item next, the table of contents should be produced using the
+%   normal command |\tableofcontents|
+% \item the |\listoffigures| and
+%   |\listoftables| commands can also be used, if such lists are necessary
+% \item before the main document body (the first |\chapter|), the
+%   |\mainmatter| command should be used to adjust the page numbering
+%   back to Arabic numerals
+% \end{itemize}
+% A short example document that follows these guidelines is linked to
+% below.
+%
+% \subsection{Details}
+%
+% \DescribeMacro{\frontmatter}
+% \DescribeMacro{\mainmatter}
+% \DescribeMacro{\backmatter}
+% The |\frontmatter| and |\mainmatter| commands should be
+% used as in the |book| document class: |\frontmatter| before
+% |\maketitle| and |\mainmatter| just before the first actual chapter
+% (after the table of contents). The |\backmatter| command also works
+% as in the |book| document class, but it is normally not needed.
+%
+% \DescribeMacro{\maketitle}
+% The |\maketitle| command produces a title page and a page containing
+% bibliographic information. The title page is designed to be inside a
+% printed book -- a cover should be produced separately.
+%
+% \DescribeEnv{abstract}
+% The |abstract| environment is used after |\maketitle| to produce the
+% abstract for the thesis. The abstract is printed on its own page (or
+% several pages), and some bibliographic information is printed before
+% and after the actual text of the abstract.
+%
+% Write the text of the abstract inside the abstract environment. The
+% text is processed as \LaTeX{} code just like the document body, so
+% you can use any \LaTeX{} commands that you need inside the abstract.
+%
+% \DescribeEnv{acknowledgements}
+% An optional acknowledgements page can be generated by placing the
+% text of the acknowledgements inside the |acknowledgements|
+% environment. This is normally placed between the abstract and the
+% table of contents.
+%
+% By default, the word ``Acknowledgements'' is printed at the top of
+% the page (like a chapter heading). This text can be changed by
+% giving an optional argument for the environment (e.g.,
+% |\begin{acknowledgements}[Preface]|), or removed by giving an
+% empty optional argument (|\begin{acknowledgements}[]|). The last
+% could be used for a page with only a dedication (``To my wife'').
+%
+% Multiple instances of the |acknowledgements| environment are
+% allowed, producing separate pages (e.g., for printing both a
+% dedication and a preface). As with the |abstract| environment,
+% \LaTeX{} commands can be used inside the environment normally.
+%
+% \subsection{Bibliographic information}
+%
+% The |tktla| document class includes a set of commands to set
+% the bibliographic information for the publication. Some of these are
+% mandatory, as listed below.
+%
+% \DescribeMacro{\author}
+% \DescribeMacro{\title}
+% The author and title of the document are set with |\author| and
+% |\title| as in the |article| and |book| document classes. The title
+% is printed in two places: on the title page and at the top of the
+% abstract page.
+%
+% Line breaks in the title at the top of the abstract page are treated
+% specially: the |\\| command is ignored there. Thus, if you want to
+% manually set line breaks in the title on the title page but not on
+% the abstract page, use |\\|. If you need a line break in both
+% places, use another line-breaking command such as |\newline|.
+%
+% \DescribeMacro{\authorcontact}
+% More detailed contact information for the author is printed on the
+% abstract page. The command to set this is
+% |\authorcontact{|\meta{information}|}|, where \meta{information}
+% typically contains the e-mail address of the author and possibly the
+% address of a WWW home page. If you need a line break, use, for
+% example, |\\| to produce it.
+%
+% \DescribeMacro{\pubtime}
+% \DescribeMacro{\reportno}
+% The date of publication (used on the copyright page and to
+% generate the report number) is set by the command
+% |\pubtime{|\meta{month}|}{|\meta{year}|}|. The \meta{month} should
+% be an English month name. The report number in the Department of
+% Computer Science series A (e.g., A-2009-1) is generated from the
+% year and from the command |\reportno{|\meta{n}|}|, where \meta{n}
+% should be just the last number (``1'' in the above example).
+%
+% \DescribeMacro{\issn}
+% \DescribeMacro{\isbnpaperback}
+% \DescribeMacro{\isbnpdf}
+% \DescribeMacro{\isbnhtml}
+% ISBN and ISSN numbers printed on the title pages are set using the
+% commands |\issn|, |\isbnpaperback|, |\isbnpdf| and |isbnhtml|. The
+% |\issn| command sets the ISSN number (the default is 1238-8645, the
+% number used in previous series~A reports) to its argument. The ISBN
+% numbers for different versions are set via the other commands;
+% normally, at least |\isbnpaperback| should be set. All of the
+% commands take one argument, which is the number to be used. If one
+% of the commands (such as |\isbnhtml|) is not used, the ISBN number
+% for this version is simply not printed at all.
+%
+% \DescribeMacro{\pubpages}
+% The |\pubpages{|\meta{pages}|}| command should be used to set the
+% page count printed on the abstract page. Note that the number pages 
+% for monographs should be the number of the last page of the list of 
+% references (for example, 150 pages), and for article-based theses 
+% the number of the last page of the list of references + the total
+% number of the pages of the original articles and the interleaf pages
+% between them (for example, 75+60 pages).
+%
+% \DescribeMacro{\crcshort}
+% \DescribeMacro{\crclong}
+% The Computing Reviews classification printed on the copyright and
+% abstract pages is set via the |\crcshort| and |\crclong|
+% commands. Note that the command |\crcshort| should only be used, 
+% if the Computing Reviews of 1998 are used.
+%
+% When using the Computing Reviews of 1998, 
+% the list of classes printed on the copyright page is set
+% using |\crcshort| to a comma-separated list (e.g.,
+% |\crcshort{A.0, C.0.0}|), while the longer list printed on the
+% abstract page is set via |\crclong|. The classes in both lists
+% should naturally be the same.  
+%
+% When using the Computing Reviews of 1998, 
+% the argument of |\crclong| works like the contents of the standard
+% |description| environment: the argument should contain a number of
+% commands of the form ``|\item[|\meta{class}|] |\meta{class name}''.
+% For example, 
+% \begin{verbatim}
+%    \crclong{
+%    \item[A.0] Example Category
+%    \item[C.0.0] Another Example
+%    }
+% \end{verbatim}
+%
+% When using the Computing Reviews of 2012, 
+% the argument of |\crclong| works like the contents of the standard
+% |description| environment: the argument should contain a number of
+% commands of the form ``|\item |\meta{class name}''.
+% For example, 
+% \begin{verbatim}
+%    \crclong{
+%    \item Example Category $\rightarrow$ And its subcategory  
+%          $\rightarrow$ And sub-subcategory
+%    \item Another Example $\rightarrow$ And its subcategory
+%    }
+% \end{verbatim}
+%
+% \DescribeMacro{\generalterms}
+% \DescribeMacro{\additionalkeywords}
+% The general terms and additional keywords printed on the abstract
+% page after the Computing Reviews classification are set with the
+% commands |\generalterms| and |\additionalkeywords|, both of which
+% take one argument (the text of the terms and keywords).
+%
+% \DescribeMacro{\printhouse}
+% The one-argument |\printhouse| command is used to set the name of
+% the printing house, which will be printed on the copyright page.
+%
+% \DescribeMacro{\permissionnotice}
+% An optional ``permission notice'' can be printed on the title page
+% using the |\permissionnotice| command. The argument is printed in
+% italic in a separate paragraph below the author's name. If the
+% command is not used, nothing is printed there.
+%
+% \DescribeMacro{\copyrighttext}
+% The copyright notice printed on the title page is ``Copyright
+% \copyright{} \meta{year of publication} \meta{name of author}'' by
+% default. The |\copyrighttext| command can be used to change this
+% default text; the single argument is the new text. You can include
+% multiple lines (|\par| starts a new line) if necessary. Use
+% |\copyright{}| for the copyright symbol~\copyright{}.
+%
+% \DescribeMacro{\pubtype}
+% Finally, the |\pubtype| command can optionally be used to set the
+% name of the type of publication printed on the abstract page; the
+% default is ``PhD thesis''. 
+%
+% The mandatory commands are |\author|, |\title|, |\authorcontact|,
+% |\pubtime|, |\reportno|, |\pubpages|, |\crclong|,
+% |\generalterms| and |\additionalkeywords|.
+%
+% \subsection{An example}
+%
+% An example document using the |tktla| document class is given in the
+% file |example.tex| distributed with the document class.
+%
+% \section{Preloaded packages}
+%
+% The |tktla| document class loads and uses the following additional
+% packages (as well as the standard |book| document class):
+% \begin{description}
+% \item[tocbibind] with the |nottoc| option, for including the
+%   bibliography and a possible index in the table of contents.
+% \item[titlesec] to make customising the layout of the chapter and
+%   section headings easy. This package is used to modify the default
+%   layout of the |book| class.
+% \item[fancyhdr] for customising the layout of the running heads.
+%   This package is used to modify the default layout of the |book|
+%   class.
+% \end{description}
+% In addition, if the |a4frame|, |a4cross| or |a4cam| options are
+% specified, the |crop| package is loaded to implement these options.
+%
+% \section{The layout provided by this class}
+%
+% The official layout selected by the |officiallayout| option is the layout
+% traditionally used in most of the PhD theses of the department. It
+% is not very much modified from the \LaTeX{} |book| class 11~pt
+% defaults; the most important changes include the text size (125~mm
+% by 195~mm plus the header -- with the header, the textblock
+% proportions are close to the golden section $1:1.618$) and the size of
+% the chapter heading (|\huge| font instead of the default |\Huge|).
+%
+% The text height is 39~lines plus two header lines (the page header and an
+% empty separator line), or about 201~mm, which gives a $5:9$ proportion
+% for the textblock -- one of the many textblock proportions
+% conventionally used in typography. The margins are 30~mm inside,
+% 34~mm outside, 19~mm top and 30~mm bottom. The $5:9$ proportion was also
+% used for the spacing around chapter and section headings.
+%
+% In the interest of consistency, horizontal space was assigned in
+% integer multiples of the leading (14~pt) for the paragraph indentation
+% (14~pt) and for the lists in the copyright and abstract pages. If you
+% design your own indented material, you could consider using the same
+% indents: 14~pt, 28~pt and 70~pt from the left margin. A half-line
+% (i.e., 7~pt) or a full line (14~pt) might be good amounts for the
+% vertical spacing around an element.
+%
+% The layout of the table of contents and the |itemize|, |description|
+% and |enumerate| environments is the \LaTeX{} |book| class default
+% layout. In a future version of this document class, these should
+% perhaps be designed to be more consistent with the spacing described
+% above.
+%
+% \section{Modifying the layout}
+%
+% If you wish to customize the layout, you should probably first read
+% the implementation documentation below, as well as the documentation
+% for the |titlesec| and |fancyhdr| packages that were used to change
+% the layout. See also the above description of the layout, which has
+% some ideas for modification and extension.
+%
+% Most things can be changed by adding customization in your document
+% preamble (e.g., by copying and modifying the definitions in this
+% document class), but sometimes you may need to change this document
+% class. You can either change the |tktla.dtx| file (which is the
+% actual source file) and regenerate the |tktla.cls| using the
+% instructions in |readme.txt|, or change |tktla.cls| directly.
+%
+% If you wish to change the font, use one of the \LaTeX{} font
+% packages (like |utopia|) or redefine |\rmdefault|, |\sfdefault| and
+% |\ttdefault| yourself (e.g., |\renewcommand{\rmdefault}{put}|). 
+%  If you use a lot of mathematics, you should also
+% find a matching font for them; there are some ready-made \LaTeX{}
+% packages with such fonts, such as |fourier| for Utopia, |mathpazo|
+% and |eulervm| for Palatino, and |mathptmx| for Times.
+%
+% If you wish to redesign the table of contents, the |titletoc|
+% package (documented in the |titlesec| documentation) provides an
+% interface to change the layout.
+%
+% \section{\LaTeX{} tips}
+%
+% \subsection{Figures and such}
+%
+% The |graphicx| package allows for easy inclusion of images in
+% various file formats, e.g., with |\includegraphics{file.eps}|. The
+% most common way to include figures is |\usepackage{graphicx}| and:
+% \begin{verbatim}
+%\begin{figure}
+%\centering\includegraphics{file.eps}
+%\caption{Caption for figure}
+%\label{fig:label}
+%\end{figure}
+% \end{verbatim}
+% (You can leave out the |\label| if you do not need to refer to the
+% figure using |\ref|.) If you do not want a figure to move around the
+% page, you can, for example, replace the |figure| environment with a
+% |center| environment and leave out the |\centering| and the caption
+% and label.
+%
+% If you want to use both |pdflatex| (which supports PDF but not EPS
+% images) and normal |latex| (which supports EPS but not PDF), you can
+% convert your figures to PDF format (e.g., using the |epstopdf|
+% program) and leave out the extension in |\includegraphics|:
+% |\includegraphics{file}| is smart enough to search for |file.eps|
+% in |latex| and |file.pdf| in |pdflatex|.
+%
+% If you need a figure with ``sub-figures'' (e.g., parts (a) and (b)
+% in a single figure), the |subfigure| package gives an easy way of
+% creating and referring to them. The |amsmath| package has a similar
+% feature for numbered equations.
+%
+% Finally, if you want a new floating environment (like |figure| or
+% |table|) with its own numbering, use the |float| package and read
+% its documentation.
+%
+% \subsection{Theorems and proofs}
+%
+% The basic \LaTeX{} |\newtheorem| command works quite well for the
+% layout of normal theorems. If you want to change the layout of
+% theorems, see the |ntheorem| or |amsthm| package.
+%
+% Proofs can be set either as is (using |\textbf| or |\textit| or even
+% |\paragraph| for the text ``Proof.''), or by using a custom
+% environment. The box symbol that ends a proof is available as |\Box|
+% in the |latexsym| package. Also, the |amsthm| package defines a
+% ready-made |proof| environment.
+%
+% \subsection{Algorithms}
+%
+% A very useful package for typesetting Pascal-style pseudocode is
+% |algorithms|, which provides the |algorithm| and |algorithmic|
+% environments. See the documentation for details and examples. (There
+% was a licensing problem with the package, which may mean that it is
+% not included with all versions of \LaTeX{} distributions. However,
+% the problem has apparently been resolved, and the package is
+% available in, e.g.,
+% \url{http://tug.ctan.org/tex-archive/macros/latex/contrib/algorithms}.)
+% There are also quite a few other packages for pseudocode, and it is
+% not difficult to write small amounts of pseudocode ``manually'', e.g.,
+% with the |flushleft| environment, |\\| for linebreaks and |\quad|
+% for indentation.
+%
+% For actual program code (instead of pseudocode), the easiest
+% solution is probably the standard |verbatim| environment. Others are
+% the |Verbatim| (capital~V) environment in the |fancyvrb| package,
+% which is much more flexible, and the |listings| package, which is
+% tailored for source code and can do syntax highlighting.
+%
+% \subsection{Other useful packages}
+%
+% Some of the most useful add-on packages for LaTeX are:
+% \begin{description}
+% \item[inputenc] allows the direct input of 8-bit characters. The
+%   |latin1| option (|\usepackage[latin1]{inputenc}|) uses the
+%   ISO~8859-1 character set. Newer versions also have a |latin9|
+%   option for the ISO~8859-15 character set.
+% \item[url] provides for more intelligent layout of URLs with the
+%   |\url| command. For example, it can break URLs across lines at the `/'
+%   characters. Set |\urlstyle{same}| in the preamble if you do not
+%   want the URLs to be set in the typewriter font.
+% \item[hyperref] produces hyperlinks in PDF documents, both inside
+%   the document (e.g., from the table of contents to the appropriate
+%   pages) and outside (when |\url| is used).
+% \end{description}
+% Many \LaTeX{} experts recommend |\usepackage[T1]{fontenc}| in the
+% preamble. This switches to a different internal enconding of the
+% fonts, often also using a different set of font files. It fixes some
+% problems in character spacing and, most notably, allows hyphenation
+% of words that contain non-ASCII characters (very useful for Finnish
+% text). However, since it uses different font files internally, there
+% have been some problems with it in various older \LaTeX{}
+% distributions, notably that the produced documents may include
+% bitmapped instead of vectored fonts. You should probably try it out
+% in the version of \LaTeX{} that you use, and if it seems to work,
+% use it in just about every document that you produce.
+%
+% \subsection{Obsolete commands}
+%
+% This section notes a few commands that have been obsolete for a
+% long time but are still commonly used. The newer versions should
+% generally work better -- the obsolete commands may can cause
+% strange effects in certain circumstances.
+%
+% The two-character \TeX{} font changing commands |\em|, |\bf|, |\tt|,
+% etc. should not be used in \LaTeX{} documents (after
+% \LaTeX$2_\epsilon$ was released in~1993). There are two versions of
+% the new commands: commands like |\emph{foo}|, |\textit{foo}|,
+% |\textsc{foo}|, |\textbf{foo}| and |\texttt{foo}| (note the three
+% `t's), and declarations like |\itshape|, |\scshape|, |\bfseries| and
+% |\ttfamily| (used as, e.g., |{\itshape foo}|). They can also be
+% combined: for instance, command |\textbf{\textit{foo}}| produces bold
+% italic. See any recent \LaTeX{}
+% reference for details.
+%
+% The |epsfig| package and its |\epsfig| and |\psfig| commands for
+% including EPS figures have been replaced (in about~1994) by the
+% |graphicx| package and its more generic |\includegraphics| command.
+% Use |\usepackage{graphicx}| and |\includegraphics{foo.eps}| instead,
+% and see grfguide.ps and epslatex.ps in texmf/doc/latex/graphics for
+% more information.
+%
+% \section{Version history}
+%
+% \begin{description}
+% \item[v0.9 2004/04/21] Initial draft version.
+% \item[v0.9b 2004/07/05] Another draft.
+% \item[v0.9c 2004/08/03] Another draft.
+% \item[v1.0 2004/11/07] Final version by Riku Saikkonen. Finished
+%   documentation. Support for newer versions of |titlesec| and |crop|
+%   by guessing versions. Slight corrections in the layout.
+% \item[v1.0b 2004/11/08] Bugfix: did not work without an
+%   |a4frame|-like option.
+% \item[v1.1 2009/02/17] New layout removed. Greger Lind{\'e}n. There is now
+% only one official layout version
+% \item[v1.2 2011/02/11] Supervisor's, pre-examiners', opponent's and custos'
+% names added to contact page. Greger Lind{\'e}n
+% \item[v1.3 2011/02/23] Supervisor's, pre-examiners', opponent's and custos'
+% names, additional formatting. Greger Lind{\'e}n
+% \item[v1.4 2012/08/14] New version of the URL of the Department.
+% Pirjo Moen
+% \item[v1.5 2013/08/16] More detailed instructions on the number pages
+% for the abstract page added. Pirjo Moen
+% \item[v1.6 2014/06/25] New telephone numbers. Pirjo Moen
+% \item[v1.7 2014/11/13] New fax number. Pirjo Moen
+% \item[v1.8 2018/04/27] New computing reviews version into use, new
+% version of the URL of the Department, and fax number removed. Pirjo Moen
+
+% \end{description}
+%
+% \StopEventually{}
+%
+% \section{Implementation details}
+%
+% This section contains the documented source code for this class,
+% documented in literate programming style. It is probably of interest
+% only if you wish to modify the class or customize the layout.
+%
+% \subsection{Initialization}
+%
+% Version number announcements. We don't need a specially new version of
+% \LaTeX{}.
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e} \ProvidesClass{tktla}[2009/02/17 v1.1 Series
+A Report for the University of Helsinki Department of Computer
+Science]
+%    \end{macrocode}
+%
+% \subsection{Option processing}
+%
+% The |officiallayout| option is defined here, setting a
+% variable |\tktla@layout| that will be queried later. The
+% |\newcommand| also sets the default layout (0 = |officiallayout|).
+%    \begin{macrocode}
+\newcommand{\tktla@layout}{0}
+\DeclareOption{officiallayout}{\renewcommand{\tktla@layout}{0}}
+%    \end{macrocode}
+% The |a4frame|, |a4cross| and |a4cam| options also simply set a
+% variable that will be used later. Here the default is to leave the
+% variable undefined, which will mean that none of the options will be
+% used.
+%    \begin{macrocode}
+\DeclareOption{a4frame}{\newcommand{\tktla@afour}{1}}
+\DeclareOption{a4cross}{\newcommand{\tktla@afour}{2}}
+\DeclareOption{a4cam}{\newcommand{\tktla@afour}{3}}
+%    \end{macrocode}
+% The following options are passed directly to the |book| class that
+% will be loaded later.
+%    \begin{macrocode}
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption{final}{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption{leqno}{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption{fleqn}{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption{openbib}{\PassOptionsToClass{\CurrentOption}{book}}
+%    \end{macrocode}
+% Finally, any options given by the user are actually executed
+% (processed).
+%    \begin{macrocode}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% \subsection{Class and package loading}
+%
+% First of all, the standard |book| class is loaded with the |b5paper|
+% and |11pt| options (to produce the required layout). The logical
+% paper size is always B5 (even with the A4 framing options).
+%    \begin{macrocode}
+\LoadClass[b5paper,11pt]{book}
+%    \end{macrocode}
+% Next, an actual B5 paper size ($176\times 250$~mm) is declared using
+% a |\special| directive -- this allows |dvips| and |pdflatex| to
+% produce the correct paper size. The |book| document class does not
+% do this by default for historical reasons. (The |geometry| package
+% would, but it is perhaps simpler to do it directly here.)
+%
+% The |\ifx| is used for declaring the B5 paper size only if the A4
+% framing options are not used (i.e., if |\tktla@afour| is undefined).
+% The |\relax| in the else branch is a no-op.
+%    \begin{macrocode}
+\ifx\tktla@afour\@undefined\special{papersize=176mm,250mm}\else\relax\fi
+%    \end{macrocode}
+% Next, two packages are loaded: |tocbibind| to get the bibliography
+% into the table of contents, and |fancyhdr| for setting page headers
+% (done later).
+%    \begin{macrocode}
+\RequirePackage[nottoc]{tocbibind}
+\RequirePackage{fancyhdr}
+%    \end{macrocode}
+% The following code loads the |titlesec| package and, if an A4
+% framing option was selected, the |crop| package.
+%
+% There is a problem with supporting different versions of these
+% packages, as there have been incompatible changes in the option
+% syntax of both packages: |titlesec| apparently changed at around
+% 1999/11/03 and |crop| on 2001/10/07. \LaTeX{} does not seem to have
+% a command to check the version of a package before it has been
+% loaded (nor to change options afterwards), so the following code
+% guesses: if the standard |book| class (which was loaded above) is
+% dated later than 2001/04/21, the new option syntax is used for both
+% packages. (Version 1.4d of the |book| class is dated 2001/04/21, and
+% the next one, 1.4e, is dated 2001/05/24, so the guess here is that a
+% \LaTeX{} distribution with a |book| class newer than v1.4d also
+% contains versions of |titlesec| and |crop| with the newer option
+% syntax.)
+%
+% The inner |\ifcase| statements are used to give appropriate options
+% to the |crop| package to implement the various kinds of framing that
+% this class (and the |crop| package) supports. The |\ifx| checks if
+% the internal variable is defined, and if yes, the |\ifcase| goes
+% through all relevant values (the first branch of the |\ifcase|
+% statement applies for the value 0, which is not possible, so nothing
+% is done).
+%    \begin{macrocode}
+\@ifclasslater{book}{2001/04/21}{
+  \RequirePackage[nonindentfirst]{titlesec}
+  \ifx\tktla@afour\@undefined\relax\else\ifcase\tktla@afour% 0=nothing
+  \or% 1=a4frame
+    \RequirePackage[frame,a4,center]{crop}
+  \or% 2=a4cross
+    \RequirePackage[cross,a4,center]{crop}
+  \or% 3=a4cam
+    \RequirePackage[cam,a4,center]{crop}
+  \fi\fi
+}{
+  \RequirePackage[nops,nonindentfirst]{titlesec}
+  \ifx\tktla@afour\@undefined\relax\else\ifcase\tktla@afour% 0=nothing
+  \or% 1=a4frame
+    \RequirePackage[frame,a4center]{crop}
+  \or% 2=a4cross
+    \RequirePackage[cross,a4center]{crop}
+  \or% 3=a4cam
+    \RequirePackage[cam,a4center]{crop}
+  \fi\fi
+}
+%    \end{macrocode}
+%
+% \subsection{Settings}
+%
+% The following code sets the title of the bibliography to
+% ``References'' instead of the |book| class default ``Bibliography'',
+% as is the custom in the theses in this department.
+%    \begin{macrocode}
+\renewcommand{\bibname}{References}
+%    \end{macrocode}
+% If the |babel| package is loaded by the document, the preceding command
+% is not enough, since |babel| changes all these titles when the
+% language is changed (which is possible also in the middle of the
+% document). The following code should work in all cases, but it needs
+% to set the title separately for each language. (The code will be stored
+% to be executed at |\begin{document}|, and it checks if the |babel|
+% package has been loaded, doing nothing if not.)
+%    \begin{macrocode}
+\AtBeginDocument{\@ifpackageloaded{babel}{%
+    \addto{\captionsenglish}{\renewcommand{\bibname}{References}}%
+    \addto{\captionsUKenglish}{\renewcommand{\bibname}{References}}%
+    \addto{\captionsbritish}{\renewcommand{\bibname}{References}}%
+    \addto{\captionsUSenglish}{\renewcommand{\bibname}{References}}%
+    \addto{\captionsamerican}{\renewcommand{\bibname}{References}}%
+    \addto{\captionscanadian}{\renewcommand{\bibname}{References}}}{}\relax}
+%    \end{macrocode}
+%
+% \subsection{Prelims}
+%
+% The code in this section is used to set the information in the
+% prelims (title page, copyright page, abstract page). First, the
+% |acknowledgements| environment is defined, simply to use |\chapter*|
+% with empty page headers.
+%    \begin{macrocode}
+\newenvironment{acknowledgements}[1][Acknowledgements]{%
+  \chapter*{#1}\markboth{}{}}{\clearpage}
+%    \end{macrocode}
+% Next, the mandatory commands for bibliographic information are
+% defined. Each of these is defined the same manner: calling, for
+% example, |\authorcontact{foo}|, defines the macro
+% |\tktla@authorcontact| to |foo|, and this macro is used later to
+% provide the necessary information. Thus, if the mandatory command was
+% not used, an error message is produced by \LaTeX{}, complaining of
+% an undefined macro when the text is needed. Double braces |{{#1}}|
+% are used to prevent possible font changing commands etc. from
+% affecting anything outside of the user-settable text.
+%    \begin{macrocode}
+\newcommand{\authorcontact}[1]{
+  \newcommand{\tktla@authorcontact}{{#1}}}
+\newcommand{\pubtime}[2]{
+  \newcommand{\tktla@pubmonth}{{#1}}
+  \newcommand{\tktla@pubyear}{{#2}}}
+\newcommand{\reportno}[1]{\newcommand{\tktla@pubno}{{#1}}}
+\newcommand{\isbnpaperback}[1]{\newcommand{\tktla@isbnpaperback}{{#1}}}
+\newcommand{\issn}[1]{\newcommand{\tktla@issn}{{#1}}}
+\newcommand{\pubpages}[1]{\newcommand{\tktla@pages}{#1}}
+\newcommand{\generalterms}[1]{\newcommand{\tktla@generalterms}{{#1}}}
+\newcommand{\additionalkeywords}[1]{
+  \newcommand{\tktla@additionalkeywords}{{#1}}}
+\newcommand{\crcshort}[1]{\newcommand{\tktla@crcshort}{{#1}}}
+\newcommand{\crclong}[1]{\newcommand{\tktla@crclong}{#1}}
+%    \end{macrocode}
+% Commands for optional bibliography information are defined in the
+% following. This is done as above, except that we provide a default
+% value with |\newcommand| and use |\renewcommand| to change it. The
+% |\@author| used in the copyright message is defined by the standard
+% |\author| command in the |book| document class. 
+%    \begin{macrocode}
+\newcommand{\tktla@pubtype}{PhD Thesis}
+\newcommand{\pubtype}[1]{\renewcommand{\tktla@pubtype}{{#1}}}
+\newcommand{\tktla@copyright}{
+  Copyright \copyright{} \tktla@pubyear{} \@author}
+\newcommand{\copyrighttext}[1]{\renewcommand{\tktla@copyright}{{#1}}}
+%    \end{macrocode}
+% The |\supervisorlist| and some other non-mandatory commands use a
+% slightly different implementation: instead of providing an empty
+% default, the command is defined like a mandatory command but the
+% existence of the defined variable (macro) is checked when the data
+% is used. Double braces are not used in |\supervisorlist| because the
+% argument is used inside a custom |list| environment with no other
+% contents.
+%    \begin{macrocode}
+\newcommand{\supervisorlist}[1]{\newcommand{\tktla@supervisorlist}{#1}}
+\newcommand{\preexaminera}[1]{\newcommand{\tktla@preexaminera}{#1}}
+\newcommand{\preexaminerb}[1]{\newcommand{\tktla@preexaminerb}{#1}}
+\newcommand{\opponent}[1]{\newcommand{\tktla@opponent}{#1}}
+\newcommand{\custos}[1]{\newcommand{\tktla@custos}{#1}}
+\newcommand{\printhouse}[1]{\newcommand{\tktla@printhouse}{{#1}}}
+\newcommand{\permissionnotice}[1]{\newcommand{\tktla@permission}{{#1}}}
+\newcommand{\isbnpdf}[1]{\newcommand{\tktla@isbnpdf}{{#1}}}
+\newcommand{\isbnhtml}[1]{\newcommand{\tktla@isbnhtml}{{#1}}}
+%    \end{macrocode}
+%
+% \subsection{The layout}
+%
+% This class specifies one official layout, and the code below is
+% used to implement it. First a bit of code: 
+% the |\maketitle| command is redefined in terms of two
+% class-internal commands defined below:
+%    \begin{macrocode}
+\renewcommand{\maketitle}{
+  \tktla@titlepage
+  \tktla@copyrightpage
+}
+%    \end{macrocode}
+% The following internal macro is used to make the code below shorter.
+% It prints the various ISSN and ISBN numbers used in the
+% bibliographic information. Lines for PDF and HTML versions are
+% skipped if the appropriate ISBNs have not been given via the
+% bibliographic information commands.
+%    \begin{macrocode}
+\newcommand{\tktla@printisxns}{
+  ISSN \tktla@issn\par
+  ISBN \tktla@isbnpaperback{} (paperback)\par
+  \ifx\tktla@isbnpdf\@undefined\relax\else
+    ISBN \tktla@isbnpdf{} (PDF)\par
+  \fi
+  \ifx\tktla@isbnhtml\@undefined\relax\else
+    ISBN \tktla@isbnhtml{} (HTML)\par
+  \fi
+}
+%    \end{macrocode}
+% Here follow the implementations of the official layout. Some
+% information is repeated in the documentation in both sections to
+% allow them to be read independently.
+%
+% \subsubsection{The official layout}
+%
+% The |officiallayout| option is implemented in this section. First, an
+% |\ifcase| statement differentiates between layouts; the
+% branch that begins here is for the value~0 of |\tktla@layout|, which
+% was set above when the |officiallayout| option was used.
+%    \begin{macrocode}
+\ifcase\tktla@layout
+%    \end{macrocode}
+% The implementation of the official layout begins by setting the margins
+% and text size: 27~mm outer, 24~mm inner, 21~mm top, textblock size
+% 125 by 195~mm plus a header line with an empty line separating the
+% header and textblock. We subtract 1~inch from the margins to give
+% more understandable values here, as the origin in \LaTeX{} margin
+% settings is at (1~in,~1~in).
+%    \begin{macrocode}
+  \setlength{\oddsidemargin}{27mm}
+  \addtolength{\oddsidemargin}{-1in}
+  \setlength{\evensidemargin}{24mm}
+  \addtolength{\evensidemargin}{-1in}
+  \setlength{\topmargin}{21mm}
+  \addtolength{\topmargin}{-1in}
+  \setlength{\headheight}{15pt}
+  \setlength{\headsep}{13.6pt}
+  \setlength{\footskip}{22pt}
+  \setlength{\textwidth}{125mm}
+  \setlength{\textheight}{195mm}
+%    \end{macrocode}
+% The following code sets the header and footer using the commands
+% defined by the |fancyhdr| package. The |\nouppercase| command is
+% used to avoid an all-caps header in some cases. (The syntax is read
+% as follows: the \textbf{r}ight side of \textbf{o}dd pages and the
+% \textbf{l}eft side of \textbf{e}ven pages contains just the page
+% number, while the other sides contain the left-page (chapter name)
+% or right-page (section name) mark.)
+%    \begin{macrocode}
+  \fancyhf{}
+  \fancyhead[RO,LE]{\thepage}
+  \fancyhead[RE]{\textsc{\nouppercase{\leftmark}}}
+  \fancyhead[LO]{\nouppercase{\rightmark}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \pagestyle{fancy}
+%    \end{macrocode}
+% The official layout specifies only one change from the \LaTeX{} default
+% headings: the size of the chapter heading is changed from the
+% default |\Huge| to the smaller |\huge|. This is done as follows
+% using the interface provided by the |titlesec| package.
+%    \begin{macrocode}
+  \titleformat{\chapter}[display]%
+              {\huge\bfseries\filright}{\chaptername~\thechapter}{20pt}{}
+%    \end{macrocode}
+% The title page is defined next. The simple centered layout is
+% implemented by using |\centering| and setting the |\parindent| and
+% |\parskip| to zero (inside braces, so the settings won't affect
+% the other pages). The |\vspace| commands are used to move
+% vertically, and a paragraph break (|\par|) starts a new line. The
+% permission notice, if one has been provided, is included in a 98~mm
+% wide |minipage| environment. The |\@title| is defined by the
+% standard |\title| command in the |book| document class. (The
+% |\tktla@titlepage| and |\tktla@copyrightpage| commands are called
+% from |\maketitle|, which was redefined above.)
+%
+% When the font, centering, etc.\ is locally changed, it is important
+% to place the end of the paragraph (explicit |\par| here) inside the
+% braces where the change is made. Otherwise the change will be
+% ignored when, for example, the line spacing is calculated.
+%    \begin{macrocode}
+  \newcommand{\tktla@titlepage}{
+    \cleardoublepage
+    \thispagestyle{empty}
+    {\centering\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+      {\scshape\small
+        Department of Computer Science\par
+        Series of Publications A\par
+        Report A-\tktla@pubyear-\tktla@pubno\par}
+      \vspace{\fill}
+      {\bfseries\Large\@title\par}
+      \vspace{25mm}
+      {\Large\@author\par}
+      \vspace{25mm}
+      \ifx\tktla@permission\@undefined\relax\else
+        \begin{minipage}{98mm}
+          \itshape\small\tktla@permission\par
+        \end{minipage}
+        \par
+      \fi
+      \vspace{\fill}
+      {\scshape\small
+        University of Helsinki\par
+        Finland\par}
+    }
+    \clearpage
+  }
+%    \end{macrocode}
+% The copyright page also contains a list of contact information. The
+% layout is created like the title page, but using |\raggedright|
+% instead of |\centering|. Thus, a paragraph break (|\par|) can
+% be used to move to the start of the next line. An empty line is
+% produced using |\quad\par|, since completely empty paragraphs are
+% ignored by \LaTeX{}.
+%
+% The address in the contact information is indented with a simple
+% |\quad|. Accented characters in the address are produced with the
+% verbose |{\"a}| syntax so that this class file remains 7-bit ASCII
+% (otherwise, the character set should be set using the |inputenc|
+% package).
+%    \begin{macrocode}
+  \newcommand{\tktla@copyrightpage}{
+    \clearpage
+    \thispagestyle{empty}
+    {\raggedright\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+      {\bf Supervisor} \par
+      \quad \hangindent=1em \tktla@supervisorlist\par
+      \quad\par
+      {\bf Pre-examiners} \par 
+      \quad \hangindent=1em \tktla@preexaminera\par
+      \quad \hangindent=1em \tktla@preexaminerb\par
+      \quad\par
+      {\bf Opponent} \par 
+      \quad \hangindent=1em \tktla@opponent\par
+      \quad\par
+      {\bf Custos} \par 
+      \quad \hangindent=1em \tktla@custos\par
+      \quad\par
+      \quad\par
+      \vspace{\fill}
+      {\bf Contact information\par}
+      \quad\par
+      \quad Department of Computer Science\par
+      \quad P.O. Box 68 (Gustaf H{\"a}llstr{\"o}min katu 2b)\par
+      \quad FI-00014 University of Helsinki\par
+      \quad Finland\par
+      \quad\par
+      \quad Email address: info@cs.helsinki.fi\par
+      \quad URL: http://cs.helsinki.fi/en/\par
+      \quad Telephone: +358 2941 911\par
+      \quad\par
+
+      \vspace{\fill}
+      \tktla@copyright\par
+      \tktla@printisxns{}
+      Helsinki \tktla@pubyear\par
+      \ifx\tktla@printhouse\@undefined\relax\else\tktla@printhouse\par\fi
+    }
+    \clearpage
+  }
+%    \end{macrocode}
+% The abstract page is created from the |abstract| environment, which
+% also creates the other information on the page. The information
+% before and after the actual abstract is set using the |\raggedright|
+% command, just as on the copyright page above.
+%    \begin{macrocode}
+  \newenvironment{abstract}{%
+    \cleardoublepage
+    \thispagestyle{plain}
+    {\raggedright\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+%    \end{macrocode}
+% Line breaks in the title (the standard |\title| command defines
+% |\@title|) that were set using |\\| are ignored simply by redefining
+% the |\\| command (which has one optional argument) to do nothing for
+% the duration of printing the title.
+%    \begin{macrocode}
+      {\bfseries\large\renewcommand{\\}[1][]{}\@title\par}
+      \quad\par
+      \@author\par
+      \quad\par
+      Department of Computer Science\par
+      P.O. Box 68, FI-00014 University of Helsinki, Finland\par
+      \tktla@authorcontact\par
+      \quad\par
+      \tktla@pubtype, Series of Publications A, Report
+        A-\tktla@pubyear-\tktla@pubno\par
+      Helsinki, \tktla@pubmonth{} \tktla@pubyear, \tktla@pages{} pages\par
+      \tktla@printisxns
+      \quad\par
+      \textbf{Abstract}\par
+    }
+%    \end{macrocode}
+% The actual abstract will be placed just after the following code,
+% which places it in its own group and sets paragraph spacing as
+% specified by the layout. (The |\begingroup| works just like the
+% opening brace |{|, but the brace cannot be used here, as the
+% corresponding closing brace needs to be in another argument of
+% |\newenvironment{abstract}|.)
+%    \begin{macrocode}
+    \begingroup
+      \setlength{\parindent}{0pt}
+      \setlength{\parskip}{\baselineskip}
+  }{%
+    \par\endgroup
+%    \end{macrocode}
+% The following information is set after the actual abstract. A custom
+% |list| environment is used for the long classification, but the
+% other information can be set more simply. In the custom |list|, the
+% |\makelabel| is redefined to produce left-justified labels.
+%    \begin{macrocode}
+    {\raggedright\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+      \quad\par
+      \textbf{Computing Reviews (2012) Categories and Subject \\
+        Descriptors:}\nopagebreak
+      \begin{list}{}{
+          \setlength{\partopsep}{0pt}
+          \setlength{\topsep}{0pt}
+          \setlength{\leftmargin}{3em}
+          \setlength{\itemsep}{0pt}
+          \setlength{\parsep}{0pt}
+          \setlength{\labelsep}{0.5em}
+          \setlength{\labelwidth}{2.5em}
+          \renewcommand{\makelabel}[1]{##1\hspace{\fill}}}
+        \tktla@crclong
+      \end{list}
+      \quad\par
+      \textbf{General Terms:}\par\nopagebreak
+      \tktla@generalterms\par
+      \quad\par
+      \textbf{Additional Key Words and Phrases:}\par\nopagebreak
+      \tktla@additionalkeywords\par
+    }
+    \clearpage
+  }
+%    \end{macrocode}
+% This ends the implementation of the official layout.
+%
+
+%
+% \subsection{Code after the definition of the official layout}
+%
+% The following code needs to be placed
+% after the definitions done by the official layout.
+%
+% The |\chaptermark| and |\sectionmark| are redefined the same way in
+% the layout: to remove the dot after the section number and the
+% default ``Chapter'' text in the header.
+%    \begin{macrocode}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+%    \end{macrocode}
+% The implementation of the |tktla| document class ends here.
+% \Finale

@@ -1,0 +1,305 @@
+\documentclass[officiallayout]{tktla}
+\usepackage[latin1]{inputenc}
+\usepackage{pdfpages}
+% This package sets the margin width 
+% (change "right" if you want them wider, but then change the 34.8pt in \note bigger too)
+\usepackage[top=1.2in, bottom=1.5in, left=1in, right=1.6cm]{geometry}
+\def \dvWHITE{white}
+\def \dvBLACK{black}
+\def \dvBLUE{blue}
+\def \dvGREEN{green}
+%%.72 = marker width§
+%% 138,6: height 
+% Use this if you have 5 articles
+%\def \dvheight{138.6pt}
+% Use this if you have 6 articles
+\def \dvheight{115.5pt}
+% Creates black box with the text given as first parameter in white
+\newcommand\note[3] {\marginpar{\vspace{#2}\colorbox{#3}{\parbox[c][\dvheight][t]{34.8pt}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{#1}}}}}}
+
+% This overlays a white box to make black box narrower, but it's not needed anymore with geometry package changing margin width
+%\newcommand\notee[2]{\marginpar{\vspace{#1}\colorbox{#2}{               \parbox[c][\dvheight][t]{11.8pt}{              \color{white}\centering\Huge{\textbf{$\ $}}}}}}
+
+\pagestyle{empty}
+\begin{document}
+
+
+% ******************************************************************************
+\chapter*{Paper I}\thispagestyle{empty}
+
+
+\note{I}{-222pt}{black}
+%\notee{-222pt}{\dvWHITE}
+
+% Here it's not necessary to draw the following boxes to position right,
+% and drawing them occasionally creates unwanted gray lines
+
+%\note{II}{-100pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+%\note{III}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+%\note{IV}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+%\note{V}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+%\note{VI}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\vspace{80pt}
+% The names of the authors
+John Doe, Jane Doe, and John Smith
+
+\vspace{10pt}
+% Title of the 1st paper
+\noindent\textbf{This is the title of the 1st paper}
+
+\vspace{10pt}
+% Bibliographical information of the paper, for example, of a conference paper
+\noindent In
+\emph{Proceedings of the X Conference on Doctoral Theses}, 
+\\Publication series info, 20ZZ, pages XX--YY.
+
+\vspace{60pt}
+% Copyright information, if the publisher is, for example, ACM
+\noindent Copyright \textcopyright\ ACM 20ZZ.
+
+\noindent Reprinted with permission.
+
+\cleardoublepage
+% Including the original publication
+\includepdf[pages=-]{Publication_name_1.pdf}
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper II}\thispagestyle{empty}
+\note{I}{-222pt}{\dvWHITE}
+%\notee{-222pt}{\dvWHITE}
+
+\note{II}{-100pt}{black}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{III}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{IV}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{V}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{VI}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\vspace{80pt}
+
+% Here are the names of the authors
+John Doe, Jane Doe, and John Smith
+
+\vspace{10pt}
+% Title of the 2nd paper
+\noindent\textbf{This is the title of the 2nd paper}
+
+\vspace{10pt}
+% Bibliographical information of the paper, for example, of a conference paper
+\noindent In 
+\emph{Proceedings of the X Conference on Doctoral Theses}, 
+\\Publication series info, 20ZZ, pages XX--YY.
+
+\vspace{60pt}
+% Copyright information, for example, if the publisher is Springer
+\noindent Copyright \textcopyright\ Springer International Publishing Switzerland 2016.
+
+\noindent Reprinted with permission.
+
+\cleardoublepage
+% Including the original publication
+\includepdf[pages=-]{PapersColored/CHICO.pdf}
+
+% ******************************************************************************
+
+
+\chapter*{Paper III}\thispagestyle{empty}
+\note{I}{-222pt}{\dvWHITE}
+%\notee{-222pt}{\dvWHITE}
+
+\note{II}{-100pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{III}{-5pt}{black}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{IV}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{V}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{VI}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\vspace{80pt}
+% Here are the names of the authors
+John Doe, Jane Doe, and John Smith
+
+\vspace{10pt}
+% Title of the 3rd paper
+\noindent\textbf{This is the title of the 3rd paper}
+
+\vspace{10pt}
+% Bibliographical information of the paper, for example, a submitted paper
+\noindent Submitted.
+
+\vspace{60pt}
+%Copyright information, when the authors have the copyright of the paper
+\noindent
+Copyright \textcopyright\ The Authors.
+
+\cleardoublepage
+% Including the original publication
+\includepdf[pages=-]{Publication_name_3.pdf}
+
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper IV}\thispagestyle{empty}
+\note{I}{-222pt}{\dvWHITE}
+%\notee{-222pt}{\dvWHITE}
+
+\note{II}{-100pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{III}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{IV}{-5pt}{black}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{V}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{VI}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\vspace{80pt}
+% Here are the names of the authors
+John Doe, Jane Doe, and John Smith
+
+\vspace{10pt}
+% Title of the 4th paper
+\noindent\textbf{This is the title of the 4th paper}
+
+\vspace{10pt}
+% Bibliographical information of the paper, for example, of a journal paper
+\noindent
+In \emph{Journal name}, \\Volume xx, 20ZZ, pages XX-YY.
+
+\vspace{60pt}
+% Copyright information, when the authors have the copyright
+\noindent Copyright \textcopyright\ The Authors.
+
+\cleardoublepage
+% Including the original publication
+\includepdf[pages=-]{Publication_name_4.pdf}
+
+% ******************************************************************************
+ 
+\chapter*{Paper V}\thispagestyle{empty}
+\note{I}{-222pt}{\dvWHITE}
+%\notee{-222pt}{\dvWHITE}
+
+\note{II}{-100pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{III}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{IV}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{V}{-5pt}{black}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{VI}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\vspace{80pt}
+% Here are the names of the authors
+John Doe, Jane Doe, and John Smith
+
+\vspace{10pt}
+% Title of the 5th paper
+\noindent\textbf{This is the title of the 5th paper}
+
+\vspace{10pt}
+% Bibliographical information of the paper, for example, of a conference paper
+\noindent
+In \emph{Proceedings of the X Conference on Doctoral Theses}, 
+\\Publication series info, 20ZZ, pages XX--YY.
+
+\vspace{60pt}
+% Copyright information, for example, if the publisher is Springer
+\noindent Copyright \textcopyright\ Springer International Publishing Switzerland 20ZZ. 
+
+\noindent Reprinted with permission.
+
+\cleardoublepage
+% Including the original publication
+\includepdf[pages=-]{Publication_name_5.pdf}
+
+% ******************************************************************************
+
+\chapter*{Paper VI}\thispagestyle{empty}
+\note{I}{-222pt}{\dvWHITE}
+%\notee{-222pt}{\dvWHITE}
+
+\note{II}{-100pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{III}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{IV}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{V}{-5pt}{\dvWHITE}
+%\notee{-126.5pt}{\dvWHITE}
+
+\note{VI}{-5pt}{black}
+%\notee{-126.5pt}{\dvWHITE}
+
+\vspace{80pt}
+% Here are the names of the authors
+John Doe, Jane Doe, and John Smith
+
+\vspace{10pt}
+% Title of the 6th paper
+\noindent\textbf{This is the title of the 6th paper}
+
+
+\vspace{10pt}
+% Bibliographical information of the paper, for example, of a journal paper
+\noindent
+In \emph{Journal name}, \\Volume xx, 20ZZ, pages XX-YY.
+
+\vspace{60pt}
+% Copyright information, for example, if the publisher is Elsevier
+\noindent Copyright \textcopyright\ Elsevier B.V. 20ZZ
+
+\noindent Reprinted with permission.
+
+\cleardoublepage
+% Including the original publication
+\includepdf[pages=-]{Publication_name_6.pdf}
+
+% ******************************************************************************
+
+
+\end{document}
