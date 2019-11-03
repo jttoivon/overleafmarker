@@ -1,0 +1,64 @@
+% --- identification ---
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{overleafmarker}[2019/11/03 v0.5]
+
+% --- initial code -----
+
+
+% --- declaration of options ---
+
+%\DeclareOption{option}{code}
+
+% --- execution of options ---
+
+
+% --- packaged loading ---
+
+\RequirePackage[absolute]{textpos}  % For absolute positioning of material
+\RequirePackage{calc}
+\RequirePackage{color}
+\RequirePackage{pgf}
+\RequirePackage{ifthen}
+\RequirePackage[strict]{changepage}
+
+% --- main code ---------
+
+
+\newcommand*{\getlength}[2]{% Converts to millimeters and removes the unit
+   %\pgfmathsetmacro#1{#2}%  Result in `pt`
+   % Or:
+   \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
+}
+
+% Define a grid where unit length is 1 millimeter.
+% The 'textpos' package, which is used to place material, uses these coordinates
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+
+\newcommand{\olmnumberofpapers}{6}  % By default divide into six parts
+\newlength{\olmheight}
+\newlength{\olmwidth}
+\newlength{\olmxpos}
+
+% Converts a number to an uppercase roman numeral
+\newcommand{\Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+% The optional parameter is the width of the bar.
+% The mandatory parameter is the number of the paper.
+\newcommand*{\olmshownumber}[2][\paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep)]{
+  \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
+  \setlength{\olmheight}{\paperheight/\olmnumberofpapers}
+  \setlength{\olmwidth}{#1}
+  \checkoddpage
+  \makeatletter\ifodd\c@page \setlength{\olmxpos}{\paperwidth-\olmwidth} \else  \setlength{\olmxpos}{0pt}\fi\makeatother
+  %\ifthenelse{\boolean{oddpage}}{%
+  %  \setlength{\olmxpos}{\paperwidth-\olmwidth}%
+  %}{\setlength{\olmxpos}{0pt}}  
+  % get the width, xpos, and ypos in millimeters and remove the unit
+  \getlength{\olmwidthmm}{\olmwidth}
+  \getlength{\olmxposmm}{\olmxpos}
+  \getlength{\olmyposmm}{\olmheight*(#2-1)} 
+  \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
+    \noindent\colorbox{green}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
+  \end{textblock}
+}

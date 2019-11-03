@@ -1,45 +1,48 @@
-\documentclass[a4paper]{article}
+\documentclass[twoside,a4paper]{article}
 
 \usepackage[showframe]{geometry}
+\usepackage{overleafmarker}
+\renewcommand{\olmnumberofpapers}{3}
+
 %\usepackage[showframe,top=1.2in, bottom=1.5in, left=1in, right=1.6cm]{geometry}
 
-\usepackage[absolute]{textpos}
-\usepackage{calc}
-\usepackage{color}
-\usepackage{pgf}
+% \usepackage[absolute]{textpos}
+% \usepackage{calc}
+% \usepackage{color}
+% \usepackage{pgf}
 
-\newcommand*{\getlength}[2]{% Converts to millimeters and removes the unit
-   %\pgfmathsetmacro#1{#2}%  Result in `pt`
-   % Or:
-   \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
-}
+% \newcommand*{\getlength}[2]{% Converts to millimeters and removes the unit
+%    %\pgfmathsetmacro#1{#2}%  Result in `pt`
+%    % Or:
+%    \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
+% }
 
-% Define a grid where unit length is 1 millimeter.
-% The 'textpos' package, which is used to place material, uses these coordinates
-\setlength{\TPHorizModule}{1mm}
-\setlength{\TPVertModule}{1mm}
+% % Define a grid where unit length is 1 millimeter.
+% % The 'textpos' package, which is used to place material, uses these coordinates
+% \setlength{\TPHorizModule}{1mm}
+% \setlength{\TPVertModule}{1mm}
 
-\newcommand{\olmnumberofpapers}{3}
-\newlength{\olmheight}
-\newlength{\olmwidth}
-\newlength{\olmxpos}
-\setlength{\olmheight}{\paperheight/\olmnumberofpapers}
+% \newcommand{\olmnumberofpapers}{3}
+% \newlength{\olmheight}
+% \newlength{\olmwidth}
+% \newlength{\olmxpos}
+% \setlength{\olmheight}{\paperheight/\olmnumberofpapers}
 
-\newcommand{\Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+% \newcommand{\Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 
 
-\newcommand*{\olmshownumber}[2][\paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep)]{
-  \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
-  \setlength{\olmwidth}{#1}
-  \setlength{\olmxpos}{\paperwidth-\olmwidth}
-  % get the width, xpos, and ypos in millimeters and remove the unit
-  \getlength{\olmwidthmm}{\olmwidth}
-  \getlength{\olmxposmm}{\olmxpos}
-  \getlength{\olmyposmm}{\olmheight*(#2-1)} 
-  \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
-    \noindent\colorbox{green}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
-  \end{textblock}
-}
+% \newcommand*{\olmshownumber}[2][\paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep)]{
+%   \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
+%   \setlength{\olmwidth}{#1}
+%   \setlength{\olmxpos}{\paperwidth-\olmwidth}
+%   % get the width, xpos, and ypos in millimeters and remove the unit
+%   \getlength{\olmwidthmm}{\olmwidth}
+%   \getlength{\olmxposmm}{\olmxpos}
+%   \getlength{\olmyposmm}{\olmheight*(#2-1)} 
+%   \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
+%     \noindent\colorbox{green}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
+%   \end{textblock}
+% }
 
 \makeatletter
 \def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
