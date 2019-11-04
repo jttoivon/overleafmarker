@@ -45,13 +45,13 @@
 
 % The optional parameter is the width of the bar.
 % The mandatory parameter is the number of the paper.
-\newcommand*{\olmshownumber}[2][\paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep)]{
+\newcommand*{\olmshownumber}[2][\ifodd\c@page \paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep) \else 1in + \hoffset + \evensidemargin - \marginparsep\fi]{
   \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
   \setlength{\olmheight}{\paperheight/\olmnumberofpapers}
   \setlength{\olmwidth}{#1}
   \checkoddpage
-  \makeatletter\ifodd\c@page \setlength{\olmxpos}{\paperwidth-\olmwidth} \else  \setlength{\olmxpos}{0pt}\fi\makeatother
-  %\ifthenelse{\boolean{oddpage}}{%
+  \ifodd\c@page \setlength{\olmxpos}{\paperwidth-\olmwidth} \else  \setlength{\olmxpos}{0pt}\fi
+  %\ifthenelse{\isodd{\c@page}}{%
   %  \setlength{\olmxpos}{\paperwidth-\olmwidth}%
   %}{\setlength{\olmxpos}{0pt}}  
   % get the width, xpos, and ypos in millimeters and remove the unit
@@ -59,6 +59,6 @@
   \getlength{\olmxposmm}{\olmxpos}
   \getlength{\olmyposmm}{\olmheight*(#2-1)} 
   \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
-    \noindent\colorbox{green}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
+    \noindent\colorbox{black}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
   \end{textblock}
 }
