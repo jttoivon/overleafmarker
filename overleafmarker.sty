@@ -7,10 +7,18 @@
 
 % --- declaration of options ---
 
-%\DeclareOption{option}{code}
+\def\olmnumberofpapers{6}
+%\newcommand{\olmnumberofpapers}{6}  % By default divide into six parts
+\DeclareOption{koe}{\message{Viesti}}
+%\DeclareOption*{\message{Sain jotain \CurrentOption}}
+% Integer option controls the number of papers
+\DeclareOption*{\let\olmnumberofpapers\CurrentOption}
 
 % --- execution of options ---
 
+%\ExecuteOptions{6} % By default divide into six parts
+
+\ProcessOptions
 
 % --- packaged loading ---
 
@@ -24,7 +32,7 @@
 % --- main code ---------
 
 
-\newcommand*{\getlength}[2]{% Converts to millimeters and removes the unit
+\newcommand*{\@getlength}[2]{% Converts to millimeters and removes the unit
    %\pgfmathsetmacro#1{#2}%  Result in `pt`
    % Or:
    \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
@@ -35,13 +43,12 @@
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
 
-\newcommand{\olmnumberofpapers}{6}  % By default divide into six parts
 \newlength{\olmheight}
 \newlength{\olmwidth}
 \newlength{\olmxpos}
 
 % Converts a number to an uppercase roman numeral
-\newcommand{\Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\@Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 
 % The optional parameter is the width of the bar.
 % The mandatory parameter is the number of the paper.
@@ -55,10 +62,10 @@
   %  \setlength{\olmxpos}{\paperwidth-\olmwidth}%
   %}{\setlength{\olmxpos}{0pt}}  
   % get the width, xpos, and ypos in millimeters and remove the unit
-  \getlength{\olmwidthmm}{\olmwidth}
-  \getlength{\olmxposmm}{\olmxpos}
-  \getlength{\olmyposmm}{\olmheight*(#2-1)} 
+  \@getlength{\olmwidthmm}{\olmwidth}
+  \@getlength{\olmxposmm}{\olmxpos}
+  \@getlength{\olmyposmm}{\olmheight*(#2-1)} 
   \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
-    \noindent\colorbox{black}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\Romannumeral#2}}}}
+    \noindent\colorbox{black}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\@Romannumeral#2}}}}
   \end{textblock}
 }
