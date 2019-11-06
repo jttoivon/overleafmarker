@@ -1,20 +1,32 @@
 % Jarkko Toivonen 2019
 % --- identification ---
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{overleafmarker}[2019/11/03 v0.5]
+\ProvidesPackage{overleafmarker}[2019/11/03 v0.6]
 
 % --- initial code -----
 
+\RequirePackage{kvoptions}
 
 % --- declaration of options ---
 
-\def\olmnumberofpapers{6} % By default divide into six parts
-\DeclareOption*{\let\olmnumberofpapers\CurrentOption}
+\SetupKeyvalOptions{
+  family=olm,
+  prefix=olm@
+}
+
+\DeclareStringOption[6]{papers}
+
+%\def\olmnumberofpapers{6} % By default divide into six parts
+%\DeclareOption*{\let\olmnumberofpapers\CurrentOption}
 
 % --- execution of options ---
 
+\ProcessKeyvalOptions*
+%\ProcessOptions
 
-\ProcessOptions
+\newcommand*{\olmsetup}
+{\setkeys{olm}%
+}
 
 % --- packaged loading ---
 
@@ -50,7 +62,7 @@
 % The mandatory parameter is the number of the paper.
 \newcommand*{\olmshownumber}[2][\ifodd\c@page \paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep) \else 1in + \hoffset + \evensidemargin - \marginparsep\fi]{
   \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
-  \setlength{\olm@height}{\paperheight/\olmnumberofpapers}
+  \setlength{\olm@height}{\paperheight / \olm@papers}
   \setlength{\olm@width}{#1}
   \checkoddpage
   \ifodd\c@page \setlength{\olm@xpos}{\paperwidth-\olm@width} \else  \setlength{\olm@xpos}{0pt}\fi
