@@ -1,3 +1,4 @@
+% Jarkko Toivonen 2019
 % --- identification ---
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{overleafmarker}[2019/11/03 v0.5]
@@ -7,16 +8,11 @@
 
 % --- declaration of options ---
 
-\def\olmnumberofpapers{6}
-%\newcommand{\olmnumberofpapers}{6}  % By default divide into six parts
-\DeclareOption{koe}{\message{Viesti}}
-%\DeclareOption*{\message{Sain jotain \CurrentOption}}
-% Integer option controls the number of papers
+\def\olmnumberofpapers{6} % By default divide into six parts
 \DeclareOption*{\let\olmnumberofpapers\CurrentOption}
 
 % --- execution of options ---
 
-%\ExecuteOptions{6} % By default divide into six parts
 
 \ProcessOptions
 
@@ -32,7 +28,7 @@
 % --- main code ---------
 
 
-\newcommand*{\@getlength}[2]{% Converts to millimeters and removes the unit
+\newcommand*{\olm@getlength}[2]{% Converts to millimeters and removes the unit
    %\pgfmathsetmacro#1{#2}%  Result in `pt`
    % Or:
    \pgfmathsetmacro#1{0.351459804*#2}%  Result in `mm`
@@ -43,29 +39,29 @@
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
 
-\newlength{\olmheight}
-\newlength{\olmwidth}
-\newlength{\olmxpos}
+\newlength{\olm@height}
+\newlength{\olm@width}
+\newlength{\olm@xpos}
 
 % Converts a number to an uppercase roman numeral
-\newcommand{\@Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\olm@Romannumeral}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 
 % The optional parameter is the width of the bar.
 % The mandatory parameter is the number of the paper.
 \newcommand*{\olmshownumber}[2][\ifodd\c@page \paperwidth - (1in + \hoffset + \oddsidemargin + \textwidth + \marginparsep) \else 1in + \hoffset + \evensidemargin - \marginparsep\fi]{
   \setlength{\fboxrule}{0pt}\setlength{\fboxsep}{0pt} % So that the colorbox and the parbox have the same dimensions
-  \setlength{\olmheight}{\paperheight/\olmnumberofpapers}
-  \setlength{\olmwidth}{#1}
+  \setlength{\olm@height}{\paperheight/\olmnumberofpapers}
+  \setlength{\olm@width}{#1}
   \checkoddpage
-  \ifodd\c@page \setlength{\olmxpos}{\paperwidth-\olmwidth} \else  \setlength{\olmxpos}{0pt}\fi
+  \ifodd\c@page \setlength{\olm@xpos}{\paperwidth-\olm@width} \else  \setlength{\olm@xpos}{0pt}\fi
   %\ifthenelse{\isodd{\c@page}}{%
   %  \setlength{\olmxpos}{\paperwidth-\olmwidth}%
   %}{\setlength{\olmxpos}{0pt}}  
   % get the width, xpos, and ypos in millimeters and remove the unit
-  \@getlength{\olmwidthmm}{\olmwidth}
-  \@getlength{\olmxposmm}{\olmxpos}
-  \@getlength{\olmyposmm}{\olmheight*(#2-1)} 
-  \begin{textblock}{\olmwidthmm}(\olmxposmm,\olmyposmm)
-    \noindent\colorbox{black}{\parbox[c][\olmheight][t]{\olmwidth}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\@Romannumeral#2}}}}
+  \olm@getlength{\olm@widthmm}{\olm@width}
+  \olm@getlength{\olm@xposmm}{\olm@xpos}
+  \olm@getlength{\olm@yposmm}{\olm@height*(#2-1)} 
+  \begin{textblock}{\olm@widthmm}(\olm@xposmm,\olm@yposmm)
+    \noindent\colorbox{black}{\parbox[c][\olm@height][t]{\olm@width}{\vspace{0.3cm}\color{white}\centering\Huge{\textbf{\olm@Romannumeral#2}}}}
   \end{textblock}
 }
