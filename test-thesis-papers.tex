@@ -1,0 +1,397 @@
+\documentclass[officiallayout]{tktla}
+\usepackage[latin1]{inputenc}
+\usepackage{pdfpages}
+
+\usepackage[papers=6]{overleafmarker}
+
+% This package sets the margin width 
+\usepackage[top=1.2in, bottom=1.5in, left=1in, right=1.6cm]{geometry}
+
+\pagestyle{empty}
+
+\newcommand{\paperi}{
+  \vspace{80pt}
+  % The names of the authors
+  John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 1st paper
+  \noindent\textbf{This is the title of the 1st paper}
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, of a conference paper
+  \noindent In
+  \emph{Proceedings of the X Conference on Doctoral Theses}, 
+  \\Publication series info, 20ZZ, pages XX--YY.
+
+  \vspace{60pt}
+  % Copyright information, if the publisher is, for example, ACM
+  \noindent Copyright \textcopyright\ ACM 20ZZ.
+
+  \noindent Reprinted with permission.
+}
+
+\newcommand{\paperii}{
+  \vspace{80pt}
+
+  % Here are the names of the authors
+  John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 2nd paper
+  \noindent\textbf{This is the title of the 2nd paper}
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, of a conference paper
+  \noindent In 
+  \emph{Proceedings of the X Conference on Doctoral Theses}, 
+  \\Publication series info, 20ZZ, pages XX--YY.
+
+  \vspace{60pt}
+  % Copyright information, for example, if the publisher is Springer
+  \noindent Copyright \textcopyright\ Springer International Publishing Switzerland 2016.
+
+  \noindent Reprinted with permission.
+}
+
+
+\newcommand{\paperiii}{
+  \vspace{80pt}
+  % Here are the names of the authors
+  John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 3rd paper
+  \noindent\textbf{This is the title of the 3rd paper}
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, a submitted paper
+  \noindent Submitted.
+
+  \vspace{60pt}
+  % Copyright information, when the authors have the copyright of the paper
+  \noindent
+  Copyright \textcopyright\ The Authors.
+}
+
+\newcommand{\paperiv}{
+  \vspace{80pt}
+  % Here are the names of the authors
+  John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 4th paper
+  \noindent\textbf{This is the title of the 4th paper}
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, of a journal paper
+  \noindent
+  In \emph{Journal name}, \\Volume xx, 20ZZ, pages XX-YY.
+
+  \vspace{60pt}
+  % Copyright information, when the authors have the copyright
+  \noindent Copyright \textcopyright\ The Authors.
+}
+
+\newcommand{\paperv}{
+  \vspace{80pt}
+  % Here are the names of the authors
+  John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 5th paper
+  \noindent\textbf{This is the title of the 5th paper}
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, of a conference paper
+  \noindent
+  In \emph{Proceedings of the X Conference on Doctoral Theses}, 
+  \\Publication series info, 20ZZ, pages XX--YY.
+
+  \vspace{60pt}
+  % Copyright information, for example, if the publisher is Springer
+  \noindent Copyright \textcopyright\ Springer International Publishing Switzerland 20ZZ. 
+
+  \noindent Reprinted with permission.
+}
+
+\newcommand{\papervi}{
+  \vspace{80pt}
+  % Here are the names of the authors
+  John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 6th paper
+  \noindent\textbf{This is the title of the 6th paper}
+
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, of a journal paper
+  \noindent
+  In \emph{Journal name}, \\Volume xx, 20ZZ, pages XX-YY.
+
+  \vspace{60pt}
+  % Copyright information, for example, if the publisher is Elsevier
+  \noindent Copyright \textcopyright\ Elsevier B.V. 20ZZ
+
+  \noindent Reprinted with permission.
+}
+
+\begin{document}
+
+
+\olmsetup{papers=3}
+% ******************************************************************************
+\chapter*{Paper I}\thispagestyle{empty}
+
+
+\olmshownumber{1}
+
+\paperi
+
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_1.pdf}
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper II}\thispagestyle{empty}
+
+\olmshownumber{2}
+
+\paperii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{PapersColored/CHICO.pdf}
+
+% ******************************************************************************
+
+
+\chapter*{Paper III}\thispagestyle{empty}
+
+\olmshownumber{3}
+
+\paperiii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_3.pdf}
+
+
+
+% ******************************************************************************
+
+
+
+
+
+\olmsetup{papers=4}
+% ******************************************************************************
+\chapter*{Paper I}\thispagestyle{empty}
+
+
+\olmshownumber{1}
+
+\paperi
+
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_1.pdf}
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper II}\thispagestyle{empty}
+
+\olmshownumber{2}
+
+\paperii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{PapersColored/CHICO.pdf}
+
+% ******************************************************************************
+
+
+\chapter*{Paper III}\thispagestyle{empty}
+
+\olmshownumber{3}
+
+\paperiii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_3.pdf}
+
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper IV}\thispagestyle{empty}
+
+\olmshownumber{4}
+
+\paperiv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_4.pdf}
+
+% ******************************************************************************
+
+
+
+
+
+\olmsetup{papers=5}
+% ******************************************************************************
+\chapter*{Paper I}\thispagestyle{empty}
+
+
+\olmshownumber{1}
+
+\paperi
+
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_1.pdf}
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper II}\thispagestyle{empty}
+
+\olmshownumber{2}
+
+\paperii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{PapersColored/CHICO.pdf}
+
+% ******************************************************************************
+
+
+\chapter*{Paper III}\thispagestyle{empty}
+
+\olmshownumber{3}
+
+\paperiii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_3.pdf}
+
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper IV}\thispagestyle{empty}
+
+\olmshownumber{4}
+
+\paperiv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_4.pdf}
+
+% ******************************************************************************
+ 
+\chapter*{Paper V}\thispagestyle{empty}
+
+\olmshownumber{5}
+
+\paperv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_5.pdf}
+
+% ******************************************************************************
+
+
+
+
+
+\olmsetup{papers=6}
+% ******************************************************************************
+\chapter*{Paper I}\thispagestyle{empty}
+
+
+\olmshownumber{1}
+
+\paperi
+
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_1.pdf}
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper II}\thispagestyle{empty}
+
+\olmshownumber{2}
+
+\paperii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{PapersColored/CHICO.pdf}
+
+% ******************************************************************************
+
+
+\chapter*{Paper III}\thispagestyle{empty}
+
+\olmshownumber{3}
+
+\paperiii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_3.pdf}
+
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper IV}\thispagestyle{empty}
+
+\olmshownumber{4}
+
+\paperiv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_4.pdf}
+
+% ******************************************************************************
+ 
+\chapter*{Paper V}\thispagestyle{empty}
+
+\olmshownumber{5}
+
+\paperv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_5.pdf}
+
+% ******************************************************************************
+
+\chapter*{Paper VI}\thispagestyle{empty}
+
+\olmshownumber{6}
+
+\papervi
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_6.pdf}
+
+% ******************************************************************************
+
+
+
+
+
+
+\end{document}
