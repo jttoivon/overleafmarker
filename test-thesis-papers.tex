@@ -12,7 +12,7 @@
 \newcommand{\paperi}{
   \vspace{80pt}
   % The names of the authors
-  John Doe, Jane Doe, and John Smith
+  \noindent John Doe, Jane Doe, and John Smith
 
   \vspace{10pt}
   % Title of the 1st paper
@@ -35,7 +35,7 @@
   \vspace{80pt}
 
   % Here are the names of the authors
-  John Doe, Jane Doe, and John Smith
+  \noindent John Doe, Jane Doe, and John Smith
 
   \vspace{10pt}
   % Title of the 2nd paper
@@ -58,7 +58,7 @@
 \newcommand{\paperiii}{
   \vspace{80pt}
   % Here are the names of the authors
-  John Doe, Jane Doe, and John Smith
+  \noindent John Doe, Jane Doe, and John Smith
 
   \vspace{10pt}
   % Title of the 3rd paper
@@ -77,7 +77,7 @@
 \newcommand{\paperiv}{
   \vspace{80pt}
   % Here are the names of the authors
-  John Doe, Jane Doe, and John Smith
+  \noindent John Doe, Jane Doe, and John Smith
 
   \vspace{10pt}
   % Title of the 4th paper
@@ -96,7 +96,7 @@
 \newcommand{\paperv}{
   \vspace{80pt}
   % Here are the names of the authors
-  John Doe, Jane Doe, and John Smith
+  \noindent John Doe, Jane Doe, and John Smith
 
   \vspace{10pt}
   % Title of the 5th paper
@@ -118,11 +118,34 @@
 \newcommand{\papervi}{
   \vspace{80pt}
   % Here are the names of the authors
-  John Doe, Jane Doe, and John Smith
+  \noindent John Doe, Jane Doe, and John Smith
 
   \vspace{10pt}
   % Title of the 6th paper
   \noindent\textbf{This is the title of the 6th paper}
+
+
+  \vspace{10pt}
+  % Bibliographical information of the paper, for example, of a journal paper
+  \noindent
+  In \emph{Journal name}, \\Volume xx, 20ZZ, pages XX-YY.
+
+  \vspace{60pt}
+  % Copyright information, for example, if the publisher is Elsevier
+  \noindent Copyright \textcopyright\ Elsevier B.V. 20ZZ
+
+  \noindent Reprinted with permission.
+}
+
+
+\newcommand{\papervii}{
+  \vspace{80pt}
+  % Here are the names of the authors
+  \noindent John Doe, Jane Doe, and John Smith
+
+  \vspace{10pt}
+  % Title of the 7th paper
+  \noindent\textbf{This is the title of the 7th paper}
 
 
   \vspace{10pt}
@@ -388,6 +411,98 @@
 %\includepdf[pages=-]{Publication_name_6.pdf}
 
 % ******************************************************************************
+
+
+
+
+
+\olmsetup{papers=7}
+% ******************************************************************************
+\chapter*{Paper I}\thispagestyle{empty}
+
+
+\olmshownumber[17mm]{1}
+
+\paperi
+
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_1.pdf}
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper II}\thispagestyle{empty}
+
+\olmshownumber[17mm]{2}
+
+\paperii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{PapersColored/CHICO.pdf}
+
+% ******************************************************************************
+
+
+\chapter*{Paper III}\thispagestyle{empty}
+
+\olmshownumber[17mm]{3}
+
+\paperiii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_3.pdf}
+
+
+
+% ******************************************************************************
+
+
+\chapter*{Paper IV}\thispagestyle{empty}
+
+\olmshownumber[17mm]{4}
+
+\paperiv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_4.pdf}
+
+% ******************************************************************************
+ 
+\chapter*{Paper V}\thispagestyle{empty}
+
+\olmshownumber[17mm]{5}
+
+\paperv
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_5.pdf}
+
+% ******************************************************************************
+
+\chapter*{Paper VI}\thispagestyle{empty}
+
+\olmshownumber[17mm]{6}
+
+\papervi
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_6.pdf}
+
+% ******************************************************************************
+
+\chapter*{Paper VII}\thispagestyle{empty}
+
+\olmshownumber[17mm]{7}
+
+\papervii
+\cleardoublepage
+% Including the original publication
+%\includepdf[pages=-]{Publication_name_7.pdf}
+
+% ******************************************************************************
+
 
 
 
